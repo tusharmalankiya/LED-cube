@@ -11,6 +11,7 @@ The 1-D 3x3 LED Cube is a simple LED display consisting of a single row of LEDs 
 - Power supply (5V battery)
 
 ## Circuit Diagram
+![LED-cube - Proteus 8 Professional - Schematic Capture 2024-04-06 18-35-31](https://github.com/tusharmalankiya/LED-cube/assets/85736626/800b73a3-75c6-494b-8e03-48e2eaa2ac9e)
 
 ## Connection Scheme
 ### Layer Connections
