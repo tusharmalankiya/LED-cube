@@ -1,5 +1,11 @@
 > ## 3D 3x3 LED Cube is coming soon
->
+> - ***Currently working on few dashing patterns for 2D-LED cube***
+> ## Future commits:
+> 1. **Operate 2D-LED-Cube remotely either through wifi or bluetooth protocol and change patterns**
+> 2. **convey information such as numbers and texts manually as well as from remote location.**
+> 3. **make 3D-LED-Cube with all the features as in 2D Cube
+> 4. **illustration of 3D Picture**
+> 
 # 2-D 3x3 LED Cube
 ## Overview
 The 2D 3x3 LED Display is a simple LED array consisting of 9 LEDs arranged in a 3x3 grid. Each LED represents a pixel that can be individually controlled to display patterns, animations, or text. This project serves as an introduction to LED matrix displays and microcontroller programming using the ATmega32.
