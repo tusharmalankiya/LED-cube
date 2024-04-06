@@ -1,6 +1,6 @@
-# 1-D 3x3 LED Cube Documentation
+# 2-D 3x3 LED Cube Documentation
 ## Overview
-The 1-D 3x3 LED Cube is a simple LED display consisting of a single row of LEDs arranged in a 3x3 grid. Each LED represents a pixel that can be individually controlled to display patterns, animations, or text. This project serves as an introduction to LED matrix displays and microcontroller programming using the ATmega32.
+The 2D 3x3 LED Display is a simple LED array consisting of 9 LEDs arranged in a 3x3 grid. Each LED represents a pixel that can be individually controlled to display patterns, animations, or text. This project serves as an introduction to LED matrix displays and microcontroller programming using the ATmega32.
 
 ## Components
 - LEDs (9 pieces)
@@ -35,7 +35,7 @@ The 1-D 3x3 LED Cube is a simple LED display consisting of a single row of LEDs 
 > Ensure proper current limiting and voltage requirements are met for the LEDs and microcontroller pins to avoid damage.
 
 ## Assembly Instructions
-Follow these steps to assemble the 1-D 3x3 LED Cube:
+Follow these steps to assemble the 2-D 3x3 LED Cube:
 
 1. **Prepare Components**: Gather all the necessary components listed above.
 2. **Connection**: Follow the connection scheme described above to connect the LEDs and microcontroller pins accordingly.
@@ -43,7 +43,7 @@ Follow these steps to assemble the 1-D 3x3 LED Cube:
 
 
 ## Programming
-The source code for controlling the 1-D 3x3 LED Cube is available in the GitHub repository. The code is written in C and can be compiled using AVR-GCC or a compatible compiler. Follow these steps to program the microcontroller:
+The source code for controlling the 2-D 3x3 LED Cube is available in the GitHub repository. The code is written in C and can be compiled using AVR-GCC or a compatible compiler. Follow these steps to program the microcontroller:
 
 1. **Clone Repository**: Clone the repository to your local machine using git clone.
    ```bash
@@ -72,7 +72,7 @@ The source code for controlling the 1-D 3x3 LED Cube is available in the GitHub 
 
 ## Usage
 
-Once the 1-D 3x3 LED Cube is assembled and programmed, it can be used to display various patterns, animations, or text. Experiment with different patterns by modifying the code or implementing custom animations. You can also integrate user input devices such as buttons or sensors to create interactive displays.
+Once the 2-D 3x3 LED Cube is assembled and programmed, it can be used to display various patterns, animations, or text. Experiment with different patterns by modifying the code or implementing custom animations. You can also integrate user input devices such as buttons or sensors to create interactive displays.
 
 ## License
 This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code for both personal and commercial projects.
