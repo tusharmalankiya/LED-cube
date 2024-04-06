@@ -1,3 +1,5 @@
+> ## 3D 3x3 LED Cube is coming soon
+>
 # 2-D 3x3 LED Cube
 ## Overview
 The 2D 3x3 LED Display is a simple LED array consisting of 9 LEDs arranged in a 3x3 grid. Each LED represents a pixel that can be individually controlled to display patterns, animations, or text. This project serves as an introduction to LED matrix displays and microcontroller programming using the ATmega32.
