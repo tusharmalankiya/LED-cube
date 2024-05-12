@@ -7,6 +7,9 @@
 
 #include "Includes/atmega32.h"
 #include "Patterns/pattern1.h"
+#include "Patterns/pattern2.h"
+#include "Patterns/pattern3.h"
+
 
 #include <util/delay.h>
 
@@ -15,9 +18,13 @@
 int main(void) {
 	initLEDs(); // Initialize LED pins
 	
+	
 	while (1) {
 		// Display each layer in sequence to create animation
-		pattern1();
+		pattern1_blink();
+		pattern3_blink();
+		pattern2();
+		
 	}
 	
 	return 0;
