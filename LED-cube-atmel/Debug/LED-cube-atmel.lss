@@ -3,29 +3,29 @@ LED-cube-atmel.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000148  00000000  00000000  00000074  2**1
+  0 .text         00000156  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000a  00800060  00000148  000001bc  2**0
+  1 .data         0000000a  00800060  00000156  000001ca  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .comment      00000030  00000000  00000000  000001c6  2**0
+  2 .comment      00000030  00000000  00000000  000001d4  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001f8  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000204  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000038  00000000  00000000  00000234  2**0
+  4 .debug_aranges 00000040  00000000  00000000  00000240  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000074a  00000000  00000000  0000026c  2**0
+  5 .debug_info   0000076d  00000000  00000000  00000280  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000637  00000000  00000000  000009b6  2**0
+  6 .debug_abbrev 0000064f  00000000  00000000  000009ed  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000031e  00000000  00000000  00000fed  2**0
+  7 .debug_line   00000375  00000000  00000000  0000103c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000054  00000000  00000000  0000130c  2**2
+  8 .debug_frame  00000070  00000000  00000000  000013b4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000345  00000000  00000000  00001360  2**0
+  9 .debug_str    00000342  00000000  00000000  00001424  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000011e  00000000  00000000  000016a5  2**0
+ 10 .debug_loc    0000014d  00000000  00000000  00001766  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000028  00000000  00000000  000017c3  2**0
+ 11 .debug_ranges 00000030  00000000  00000000  000018b3  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,7 +65,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	e8 e4       	ldi	r30, 0x48	; 72
+  66:	e6 e5       	ldi	r30, 0x56	; 86
   68:	f1 e0       	ldi	r31, 0x01	; 1
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
@@ -73,15 +73,15 @@ Disassembly of section .text:
   70:	aa 36       	cpi	r26, 0x6A	; 106
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
-  76:	0e 94 8d 00 	call	0x11a	; 0x11a <main>
-  7a:	0c 94 a2 00 	jmp	0x144	; 0x144 <_exit>
+  76:	0e 94 a4 00 	call	0x148	; 0x148 <main>
+  7a:	0c 94 a9 00 	jmp	0x152	; 0x152 <_exit>
 
 0000007e <__bad_interrupt>:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000082 <reset_pins>:
-	{0b10000000, 0b00000000, 0b11111111}, // Layer 2: All LEDs off
-};
+#define COLUMN_LAST_PIN_MASK 0x01
+
 
 void reset_pins(){
 	//set layer pins off
@@ -119,8 +119,8 @@ void initLEDs() {
   9e:	08 95       	ret
 
 000000a0 <displayLayer>:
-}
-
+	{0b10000000, 0b00000000, 0b11111111}, // Layer 2: All LEDs off
+};
 
 // Function to display a layer pattern
 void displayLayer(uint8_t layer) {
@@ -214,48 +214,62 @@ void displayLayer(uint8_t layer) {
 }
  118:	08 95       	ret
 
-0000011a <main>:
+0000011a <pattern1>:
 
-
-int main(void) {
-	initLEDs(); // Initialize LED pins
- 11a:	0e 94 47 00 	call	0x8e	; 0x8e <initLEDs>
-	
-	while (1) {
-		// Display each layer in sequence to create animation
-		for (int layer = 0; layer < 3; layer++) {
+void pattern1(){
+ 11a:	cf 93       	push	r28
+ 11c:	df 93       	push	r29
+	for (int layer = 0; layer < 3; layer++) {
  11e:	c0 e0       	ldi	r28, 0x00	; 0
  120:	d0 e0       	ldi	r29, 0x00	; 0
- 122:	0a c0       	rjmp	.+20     	; 0x138 <main+0x1e>
-			displayLayer(layer);
+ 122:	0a c0       	rjmp	.+20     	; 0x138 <pattern1+0x1e>
+		displayLayer(layer);
  124:	8c 2f       	mov	r24, r28
  126:	0e 94 50 00 	call	0xa0	; 0xa0 <displayLayer>
  12a:	8f e9       	ldi	r24, 0x9F	; 159
  12c:	9f e0       	ldi	r25, 0x0F	; 15
  12e:	01 97       	sbiw	r24, 0x01	; 1
- 130:	f1 f7       	brne	.-4      	; 0x12e <main+0x14>
- 132:	00 c0       	rjmp	.+0      	; 0x134 <main+0x1a>
+ 130:	f1 f7       	brne	.-4      	; 0x12e <pattern1+0x14>
+ 132:	00 c0       	rjmp	.+0      	; 0x134 <pattern1+0x1a>
  134:	00 00       	nop
-int main(void) {
-	initLEDs(); // Initialize LED pins
-	
-	while (1) {
-		// Display each layer in sequence to create animation
-		for (int layer = 0; layer < 3; layer++) {
+		_delay_ms(100); // Adjust the delay as needed for brightness
+	}
+}
+
+void pattern1(){
+	for (int layer = 0; layer < 3; layer++) {
  136:	21 96       	adiw	r28, 0x01	; 1
  138:	c3 30       	cpi	r28, 0x03	; 3
  13a:	d1 05       	cpc	r29, r1
- 13c:	9c f3       	brlt	.-26     	; 0x124 <main+0xa>
-			displayLayer(layer);
-			_delay_ms(1); // Adjust the delay to control animation speed
-		}
-		reset_pins();
- 13e:	0e 94 41 00 	call	0x82	; 0x82 <reset_pins>
+ 13c:	9c f3       	brlt	.-26     	; 0x124 <pattern1+0xa>
+		displayLayer(layer);
+		_delay_ms(1); // Adjust the delay to control animation speed
 	}
- 142:	ed cf       	rjmp	.-38     	; 0x11e <main+0x4>
+	reset_pins();
+ 13e:	0e 94 41 00 	call	0x82	; 0x82 <reset_pins>
 
-00000144 <_exit>:
- 144:	f8 94       	cli
+}
+ 142:	df 91       	pop	r29
+ 144:	cf 91       	pop	r28
+ 146:	08 95       	ret
 
-00000146 <__stop_program>:
- 146:	ff cf       	rjmp	.-2      	; 0x146 <__stop_program>
+00000148 <main>:
+#include <util/delay.h>
+
+
+
+int main(void) {
+	initLEDs(); // Initialize LED pins
+ 148:	0e 94 47 00 	call	0x8e	; 0x8e <initLEDs>
+	
+	while (1) {
+		// Display each layer in sequence to create animation
+		pattern1();
+ 14c:	0e 94 8d 00 	call	0x11a	; 0x11a <pattern1>
+ 150:	fd cf       	rjmp	.-6      	; 0x14c <main+0x4>
+
+00000152 <_exit>:
+ 152:	f8 94       	cli
+
+00000154 <__stop_program>:
+ 154:	ff cf       	rjmp	.-2      	; 0x154 <__stop_program>
