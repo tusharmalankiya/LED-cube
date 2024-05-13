@@ -3,29 +3,29 @@ LED-cube-atmel.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000136  00000000  00000000  00000074  2**1
+  0 .text         000001c0  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000a  00800060  00000136  000001aa  2**0
+  1 .data         00000012  00800060  000001c0  00000234  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .comment      00000030  00000000  00000000  000001b4  2**0
+  2 .comment      00000030  00000000  00000000  00000246  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001e4  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000278  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000080  00000000  00000000  00000220  2**0
+  4 .debug_aranges 000000a0  00000000  00000000  000002b4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000d3a  00000000  00000000  000002a0  2**0
+  5 .debug_info   00000c87  00000000  00000000  00000354  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000006bf  00000000  00000000  00000fda  2**0
+  6 .debug_abbrev 00000816  00000000  00000000  00000fdb  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000733  00000000  00000000  00001699  2**0
+  7 .debug_line   00000761  00000000  00000000  000017f1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000000d4  00000000  00000000  00001dcc  2**2
+  8 .debug_frame  000000dc  00000000  00000000  00001f54  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003dc  00000000  00000000  00001ea0  2**0
+  9 .debug_str    000003d9  00000000  00000000  00002030  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000006e3  00000000  00000000  0000227c  2**0
+ 10 .debug_loc    000004a7  00000000  00000000  00002409  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000060  00000000  00000000  0000295f  2**0
+ 11 .debug_ranges 00000060  00000000  00000000  000028b0  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,16 +65,16 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	e6 e3       	ldi	r30, 0x36	; 54
+  66:	e0 ec       	ldi	r30, 0xC0	; 192
   68:	f1 e0       	ldi	r31, 0x01	; 1
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
-  70:	aa 36       	cpi	r26, 0x6A	; 106
+  70:	a2 37       	cpi	r26, 0x72	; 114
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
-  76:	0e 94 94 00 	call	0x128	; 0x128 <main>
-  7a:	0c 94 99 00 	jmp	0x132	; 0x132 <_exit>
+  76:	0e 94 50 00 	call	0xa0	; 0xa0 <main>
+  7a:	0c 94 de 00 	jmp	0x1bc	; 0x1bc <_exit>
 
 0000007e <__bad_interrupt>:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -117,100 +117,239 @@ void initLEDs(void) {
   9a:	0e 94 41 00 	call	0x82	; 0x82 <reset_pins>
   9e:	08 95       	ret
 
-000000a0 <pattern2_blink>:
-			COLUMN_PORT = patterns3_blink[j][i];
-			_delay_ms(200); // Adjust the delay as needed for brightness
-		}
-		_delay_ms(1); // Adjust the delay to control animation speed
-	}
-	reset_pins();
-  a0:	20 e0       	ldi	r18, 0x00	; 0
-  a2:	30 e0       	ldi	r19, 0x00	; 0
-  a4:	3b c0       	rjmp	.+118    	; 0x11c <pattern2_blink+0x7c>
-  a6:	87 e0       	ldi	r24, 0x07	; 7
-  a8:	8b bb       	out	0x1b, r24	; 27
-  aa:	80 e0       	ldi	r24, 0x00	; 0
-  ac:	90 e0       	ldi	r25, 0x00	; 0
-  ae:	2b c0       	rjmp	.+86     	; 0x106 <pattern2_blink+0x66>
-  b0:	82 30       	cpi	r24, 0x02	; 2
-  b2:	91 05       	cpc	r25, r1
-  b4:	99 f4       	brne	.+38     	; 0xdc <pattern2_blink+0x3c>
-  b6:	22 30       	cpi	r18, 0x02	; 2
-  b8:	31 05       	cpc	r19, r1
-  ba:	81 f4       	brne	.+32     	; 0xdc <pattern2_blink+0x3c>
-  bc:	45 b3       	in	r20, 0x15	; 21
-  be:	4e 7f       	andi	r20, 0xFE	; 254
-  c0:	45 bb       	out	0x15, r20	; 21
-  c2:	4f ef       	ldi	r20, 0xFF	; 255
-  c4:	51 ee       	ldi	r21, 0xE1	; 225
-  c6:	64 e0       	ldi	r22, 0x04	; 4
-  c8:	41 50       	subi	r20, 0x01	; 1
-  ca:	50 40       	sbci	r21, 0x00	; 0
-  cc:	60 40       	sbci	r22, 0x00	; 0
-  ce:	e1 f7       	brne	.-8      	; 0xc8 <pattern2_blink+0x28>
-  d0:	00 c0       	rjmp	.+0      	; 0xd2 <pattern2_blink+0x32>
-  d2:	00 00       	nop
-  d4:	45 b3       	in	r20, 0x15	; 21
-  d6:	41 60       	ori	r20, 0x01	; 1
-  d8:	45 bb       	out	0x15, r20	; 21
-  da:	14 c0       	rjmp	.+40     	; 0x104 <pattern2_blink+0x64>
-  dc:	f9 01       	movw	r30, r18
-  de:	ee 0f       	add	r30, r30
-  e0:	ff 1f       	adc	r31, r31
-  e2:	e2 0f       	add	r30, r18
-  e4:	f3 1f       	adc	r31, r19
-  e6:	e0 5a       	subi	r30, 0xA0	; 160
-  e8:	ff 4f       	sbci	r31, 0xFF	; 255
-  ea:	e8 0f       	add	r30, r24
-  ec:	f9 1f       	adc	r31, r25
-  ee:	40 81       	ld	r20, Z
-  f0:	48 bb       	out	0x18, r20	; 24
-  f2:	4f ef       	ldi	r20, 0xFF	; 255
-  f4:	51 ee       	ldi	r21, 0xE1	; 225
-  f6:	64 e0       	ldi	r22, 0x04	; 4
-  f8:	41 50       	subi	r20, 0x01	; 1
-  fa:	50 40       	sbci	r21, 0x00	; 0
-  fc:	60 40       	sbci	r22, 0x00	; 0
-  fe:	e1 f7       	brne	.-8      	; 0xf8 <pattern2_blink+0x58>
- 100:	00 c0       	rjmp	.+0      	; 0x102 <pattern2_blink+0x62>
- 102:	00 00       	nop
- 104:	01 96       	adiw	r24, 0x01	; 1
- 106:	83 30       	cpi	r24, 0x03	; 3
- 108:	91 05       	cpc	r25, r1
- 10a:	94 f2       	brlt	.-92     	; 0xb0 <pattern2_blink+0x10>
- 10c:	8f e9       	ldi	r24, 0x9F	; 159
- 10e:	9f e0       	ldi	r25, 0x0F	; 15
- 110:	01 97       	sbiw	r24, 0x01	; 1
- 112:	f1 f7       	brne	.-4      	; 0x110 <pattern2_blink+0x70>
- 114:	00 c0       	rjmp	.+0      	; 0x116 <pattern2_blink+0x76>
- 116:	00 00       	nop
- 118:	2f 5f       	subi	r18, 0xFF	; 255
- 11a:	3f 4f       	sbci	r19, 0xFF	; 255
- 11c:	23 30       	cpi	r18, 0x03	; 3
- 11e:	31 05       	cpc	r19, r1
- 120:	14 f2       	brlt	.-124    	; 0xa6 <pattern2_blink+0x6>
- 122:	0e 94 41 00 	call	0x82	; 0x82 <reset_pins>
- 126:	08 95       	ret
-
-00000128 <main>:
+000000a0 <main>:
 //#include <string.h>
 
 
 
 int main(void) {
 	initLEDs(); // Initialize LED pins
- 128:	0e 94 47 00 	call	0x8e	; 0x8e <initLEDs>
+  a0:	0e 94 47 00 	call	0x8e	; 0x8e <initLEDs>
+		//strcat(str, response);
+		//transmitting String
 		//USART_transmition_string(str);
 		
 		// Display each layer in sequence to create animation
-		//pattern1_blink();
-		//pattern3_blink();
-		pattern2_blink();
- 12c:	0e 94 50 00 	call	0xa0	; 0xa0 <pattern2_blink>
- 130:	fd cf       	rjmp	.-6      	; 0x12c <main+0x4>
+		pattern1_blink();
+  a4:	0e 94 57 00 	call	0xae	; 0xae <pattern1_blink>
+		pattern3_blink();
+  a8:	0e 94 9b 00 	call	0x136	; 0x136 <pattern3_blink>
+  ac:	fb cf       	rjmp	.-10     	; 0xa4 <main+0x4>
 
-00000132 <_exit>:
- 132:	f8 94       	cli
+000000ae <pattern1_blink>:
+	reset_pins();
 
-00000134 <__stop_program>:
- 134:	ff cf       	rjmp	.-2      	; 0x134 <__stop_program>
+}
+
+void pattern1_blink(void){
+	for (int j = 0; j < 3; j++) {
+  ae:	20 e0       	ldi	r18, 0x00	; 0
+  b0:	30 e0       	ldi	r19, 0x00	; 0
+  b2:	3b c0       	rjmp	.+118    	; 0x12a <pattern1_blink+0x7c>
+		LAYER_PORT = 0b00000111;
+  b4:	87 e0       	ldi	r24, 0x07	; 7
+  b6:	8b bb       	out	0x1b, r24	; 27
+		
+		// Output the pattern for the selected layer
+		for (int i = 0; i < 3; i++) {
+  b8:	80 e0       	ldi	r24, 0x00	; 0
+  ba:	90 e0       	ldi	r25, 0x00	; 0
+  bc:	2b c0       	rjmp	.+86     	; 0x114 <pattern1_blink+0x66>
+			if(i == 2 && j == 2){
+  be:	82 30       	cpi	r24, 0x02	; 2
+  c0:	91 05       	cpc	r25, r1
+  c2:	99 f4       	brne	.+38     	; 0xea <pattern1_blink+0x3c>
+  c4:	22 30       	cpi	r18, 0x02	; 2
+  c6:	31 05       	cpc	r19, r1
+  c8:	81 f4       	brne	.+32     	; 0xea <pattern1_blink+0x3c>
+				ColUMN_LAST_PIN_PORT &= ~(1 << PINC0);
+  ca:	45 b3       	in	r20, 0x15	; 21
+  cc:	4e 7f       	andi	r20, 0xFE	; 254
+  ce:	45 bb       	out	0x15, r20	; 21
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  d0:	4f ef       	ldi	r20, 0xFF	; 255
+  d2:	51 ee       	ldi	r21, 0xE1	; 225
+  d4:	64 e0       	ldi	r22, 0x04	; 4
+  d6:	41 50       	subi	r20, 0x01	; 1
+  d8:	50 40       	sbci	r21, 0x00	; 0
+  da:	60 40       	sbci	r22, 0x00	; 0
+  dc:	e1 f7       	brne	.-8      	; 0xd6 <pattern1_blink+0x28>
+  de:	00 c0       	rjmp	.+0      	; 0xe0 <pattern1_blink+0x32>
+  e0:	00 00       	nop
+				_delay_ms(100);
+				ColUMN_LAST_PIN_PORT |= (1 << PINC0);
+  e2:	45 b3       	in	r20, 0x15	; 21
+  e4:	41 60       	ori	r20, 0x01	; 1
+  e6:	45 bb       	out	0x15, r20	; 21
+				continue;
+  e8:	14 c0       	rjmp	.+40     	; 0x112 <pattern1_blink+0x64>
+			}
+			COLUMN_PORT = patterns1_blink[j][i];
+  ea:	f9 01       	movw	r30, r18
+  ec:	ee 0f       	add	r30, r30
+  ee:	ff 1f       	adc	r31, r31
+  f0:	e2 0f       	add	r30, r18
+  f2:	f3 1f       	adc	r31, r19
+  f4:	e0 5a       	subi	r30, 0xA0	; 160
+  f6:	ff 4f       	sbci	r31, 0xFF	; 255
+  f8:	e8 0f       	add	r30, r24
+  fa:	f9 1f       	adc	r31, r25
+  fc:	40 81       	ld	r20, Z
+  fe:	48 bb       	out	0x18, r20	; 24
+ 100:	4f ef       	ldi	r20, 0xFF	; 255
+ 102:	51 ee       	ldi	r21, 0xE1	; 225
+ 104:	64 e0       	ldi	r22, 0x04	; 4
+ 106:	41 50       	subi	r20, 0x01	; 1
+ 108:	50 40       	sbci	r21, 0x00	; 0
+ 10a:	60 40       	sbci	r22, 0x00	; 0
+ 10c:	e1 f7       	brne	.-8      	; 0x106 <pattern1_blink+0x58>
+ 10e:	00 c0       	rjmp	.+0      	; 0x110 <pattern1_blink+0x62>
+ 110:	00 00       	nop
+void pattern1_blink(void){
+	for (int j = 0; j < 3; j++) {
+		LAYER_PORT = 0b00000111;
+		
+		// Output the pattern for the selected layer
+		for (int i = 0; i < 3; i++) {
+ 112:	01 96       	adiw	r24, 0x01	; 1
+ 114:	83 30       	cpi	r24, 0x03	; 3
+ 116:	91 05       	cpc	r25, r1
+ 118:	94 f2       	brlt	.-92     	; 0xbe <pattern1_blink+0x10>
+ 11a:	8f e9       	ldi	r24, 0x9F	; 159
+ 11c:	9f e0       	ldi	r25, 0x0F	; 15
+ 11e:	01 97       	sbiw	r24, 0x01	; 1
+ 120:	f1 f7       	brne	.-4      	; 0x11e <pattern1_blink+0x70>
+ 122:	00 c0       	rjmp	.+0      	; 0x124 <pattern1_blink+0x76>
+ 124:	00 00       	nop
+	reset_pins();
+
+}
+
+void pattern1_blink(void){
+	for (int j = 0; j < 3; j++) {
+ 126:	2f 5f       	subi	r18, 0xFF	; 255
+ 128:	3f 4f       	sbci	r19, 0xFF	; 255
+ 12a:	23 30       	cpi	r18, 0x03	; 3
+ 12c:	31 05       	cpc	r19, r1
+ 12e:	14 f2       	brlt	.-124    	; 0xb4 <pattern1_blink+0x6>
+			COLUMN_PORT = patterns1_blink[j][i];
+			_delay_ms(100); // Adjust the delay as needed for brightness
+		}
+		_delay_ms(1); // Adjust the delay to control animation speed
+	}
+	reset_pins();
+ 130:	0e 94 41 00 	call	0x82	; 0x82 <reset_pins>
+ 134:	08 95       	ret
+
+00000136 <pattern3_blink>:
+	reset_pins();
+
+}
+
+void pattern3_blink(void){
+	for (int j = 0; j < 3; j++) {
+ 136:	20 e0       	ldi	r18, 0x00	; 0
+ 138:	30 e0       	ldi	r19, 0x00	; 0
+ 13a:	3a c0       	rjmp	.+116    	; 0x1b0 <pattern3_blink+0x7a>
+		LAYER_PORT = 0b00000111;
+ 13c:	87 e0       	ldi	r24, 0x07	; 7
+ 13e:	8b bb       	out	0x1b, r24	; 27
+		// Output the pattern for the selected layer
+		for (int i = 0; i < 3; i++) {
+ 140:	80 e0       	ldi	r24, 0x00	; 0
+ 142:	90 e0       	ldi	r25, 0x00	; 0
+ 144:	2a c0       	rjmp	.+84     	; 0x19a <pattern3_blink+0x64>
+			if(i == 0 && j == 0){
+ 146:	00 97       	sbiw	r24, 0x00	; 0
+ 148:	99 f4       	brne	.+38     	; 0x170 <pattern3_blink+0x3a>
+ 14a:	21 15       	cp	r18, r1
+ 14c:	31 05       	cpc	r19, r1
+ 14e:	81 f4       	brne	.+32     	; 0x170 <pattern3_blink+0x3a>
+				ColUMN_LAST_PIN_PORT &= ~(1 << PINC0);
+ 150:	45 b3       	in	r20, 0x15	; 21
+ 152:	4e 7f       	andi	r20, 0xFE	; 254
+ 154:	45 bb       	out	0x15, r20	; 21
+ 156:	4f ef       	ldi	r20, 0xFF	; 255
+ 158:	51 ee       	ldi	r21, 0xE1	; 225
+ 15a:	64 e0       	ldi	r22, 0x04	; 4
+ 15c:	41 50       	subi	r20, 0x01	; 1
+ 15e:	50 40       	sbci	r21, 0x00	; 0
+ 160:	60 40       	sbci	r22, 0x00	; 0
+ 162:	e1 f7       	brne	.-8      	; 0x15c <pattern3_blink+0x26>
+ 164:	00 c0       	rjmp	.+0      	; 0x166 <pattern3_blink+0x30>
+ 166:	00 00       	nop
+				_delay_ms(100);
+				ColUMN_LAST_PIN_PORT |= (1 << PINC0);
+ 168:	45 b3       	in	r20, 0x15	; 21
+ 16a:	41 60       	ori	r20, 0x01	; 1
+ 16c:	45 bb       	out	0x15, r20	; 21
+				continue;
+ 16e:	14 c0       	rjmp	.+40     	; 0x198 <pattern3_blink+0x62>
+			}
+			COLUMN_PORT = patterns3_blink[j][i];
+ 170:	f9 01       	movw	r30, r18
+ 172:	ee 0f       	add	r30, r30
+ 174:	ff 1f       	adc	r31, r31
+ 176:	e2 0f       	add	r30, r18
+ 178:	f3 1f       	adc	r31, r19
+ 17a:	e7 59       	subi	r30, 0x97	; 151
+ 17c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 17e:	e8 0f       	add	r30, r24
+ 180:	f9 1f       	adc	r31, r25
+ 182:	40 81       	ld	r20, Z
+ 184:	48 bb       	out	0x18, r20	; 24
+ 186:	4f ef       	ldi	r20, 0xFF	; 255
+ 188:	51 ee       	ldi	r21, 0xE1	; 225
+ 18a:	64 e0       	ldi	r22, 0x04	; 4
+ 18c:	41 50       	subi	r20, 0x01	; 1
+ 18e:	50 40       	sbci	r21, 0x00	; 0
+ 190:	60 40       	sbci	r22, 0x00	; 0
+ 192:	e1 f7       	brne	.-8      	; 0x18c <pattern3_blink+0x56>
+ 194:	00 c0       	rjmp	.+0      	; 0x196 <pattern3_blink+0x60>
+ 196:	00 00       	nop
+
+void pattern3_blink(void){
+	for (int j = 0; j < 3; j++) {
+		LAYER_PORT = 0b00000111;
+		// Output the pattern for the selected layer
+		for (int i = 0; i < 3; i++) {
+ 198:	01 96       	adiw	r24, 0x01	; 1
+ 19a:	83 30       	cpi	r24, 0x03	; 3
+ 19c:	91 05       	cpc	r25, r1
+ 19e:	9c f2       	brlt	.-90     	; 0x146 <pattern3_blink+0x10>
+ 1a0:	8f e9       	ldi	r24, 0x9F	; 159
+ 1a2:	9f e0       	ldi	r25, 0x0F	; 15
+ 1a4:	01 97       	sbiw	r24, 0x01	; 1
+ 1a6:	f1 f7       	brne	.-4      	; 0x1a4 <pattern3_blink+0x6e>
+ 1a8:	00 c0       	rjmp	.+0      	; 0x1aa <pattern3_blink+0x74>
+ 1aa:	00 00       	nop
+	reset_pins();
+
+}
+
+void pattern3_blink(void){
+	for (int j = 0; j < 3; j++) {
+ 1ac:	2f 5f       	subi	r18, 0xFF	; 255
+ 1ae:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1b0:	23 30       	cpi	r18, 0x03	; 3
+ 1b2:	31 05       	cpc	r19, r1
+ 1b4:	1c f2       	brlt	.-122    	; 0x13c <pattern3_blink+0x6>
+			COLUMN_PORT = patterns3_blink[j][i];
+			_delay_ms(100); // Adjust the delay as needed for brightness
+		}
+		_delay_ms(1); // Adjust the delay to control animation speed
+	}
+	reset_pins();
+ 1b6:	0e 94 41 00 	call	0x82	; 0x82 <reset_pins>
+ 1ba:	08 95       	ret
+
+000001bc <_exit>:
+ 1bc:	f8 94       	cli
+
+000001be <__stop_program>:
+ 1be:	ff cf       	rjmp	.-2      	; 0x1be <__stop_program>

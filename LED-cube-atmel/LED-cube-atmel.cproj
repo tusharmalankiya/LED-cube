@@ -129,19 +129,25 @@
     <Compile Include="Libs\USART\usart.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Libs\USART\USART.h">
+    <Compile Include="Libs\USART\usart.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Patterns\pattern1.h">
+    <Compile Include="Patterns\pattern1.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Patterns\pattern2.h">
+    <Compile Include="Patterns\pattern2.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Patterns\pattern3.h">
+    <Compile Include="Patterns\pattern3.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Patterns\pattern4.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Patterns\patterns.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

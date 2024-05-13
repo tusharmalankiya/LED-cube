@@ -8,3 +8,11 @@ Libs\USART\usart.c
 
 main.c
 
+Patterns\pattern1.c
+
+Patterns\pattern2.c
+
+Patterns\pattern3.c
+
+Patterns\pattern4.c
+

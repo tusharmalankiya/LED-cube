@@ -1,9 +1,5 @@
 
-#ifndef PATTERN2_H_
-#define PATTERN2_H_
-
-#include "./../Includes/atmega32.h"
-#include <util/delay.h>
+#include "patterns.h"
 
 
 // Define the animation patterns for each layer
@@ -57,6 +53,3 @@ void pattern2_blink(void){
 	reset_pins();
 }
 
-
-
-#endif /* PATTERN2_H_ */

@@ -1,10 +1,4 @@
-
-
-#ifndef PATTERN3_H_
-#define PATTERN3_H_
-
-#include "./../Includes/atmega32.h"
-#include <util/delay.h>
+#include "patterns.h"
 
 // Define the animation patterns for each layer
 uint8_t patterns3[][3] = {
@@ -20,18 +14,18 @@ uint8_t patterns3_blink[][3] = {
 };
 
 
-void pattern3(){
+void pattern3(void){
 	for (int j = 0; j < 3; j++) {
 		LAYER_PORT = 0b00000111;
 		// Output the pattern for the selected layer
 		for (int i = 0; i < 3; i++) {
 			if(i == 0 && j == 0){
 				ColUMN_LAST_PIN_PORT &= ~(1 << PINC0);
-				_delay_ms(200);
+				_delay_ms(100);
 				continue;
 			}
 			COLUMN_PORT = patterns3[j][i];
-			_delay_ms(200); // Adjust the delay as needed for brightness
+			_delay_ms(100); // Adjust the delay as needed for brightness
 		}
 		_delay_ms(1); // Adjust the delay to control animation speed
 	}
@@ -39,25 +33,21 @@ void pattern3(){
 
 }
 
-void pattern3_blink(){
+void pattern3_blink(void){
 	for (int j = 0; j < 3; j++) {
 		LAYER_PORT = 0b00000111;
 		// Output the pattern for the selected layer
 		for (int i = 0; i < 3; i++) {
 			if(i == 0 && j == 0){
 				ColUMN_LAST_PIN_PORT &= ~(1 << PINC0);
-				_delay_ms(200);
+				_delay_ms(100);
 				ColUMN_LAST_PIN_PORT |= (1 << PINC0);
 				continue;
 			}
 			COLUMN_PORT = patterns3_blink[j][i];
-			_delay_ms(200); // Adjust the delay as needed for brightness
+			_delay_ms(100); // Adjust the delay as needed for brightness
 		}
 		_delay_ms(1); // Adjust the delay to control animation speed
 	}
 	reset_pins();
 }
-
-
-
-#endif /* PATTERN3_H_ */

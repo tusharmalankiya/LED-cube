@@ -1,12 +1,7 @@
-
-#ifndef PATTERN1_H_
-#define PATTERN1_H_
-
-#include "./../Includes/atmega32.h"
-#include <util/delay.h>
+#include "patterns.h"
 
 // Define the animation patterns for each layer
-uint8_t patterns[][3] = {
+uint8_t patterns1[][3] = {
 	{0b11111110, 0b11111100, 0b11111000}, // Layer 0: All LEDs off
 	{0b11011000, 0b11001000, 0b11000000}, // Layer 1: All LEDs off
 	{0b10000000, 0b00000000, 0b11111111}, // Layer 2: All LEDs off
@@ -27,15 +22,15 @@ void displayLayer(uint8_t layer) {
 	for (int i = 0; i < 3; i++) {
 		if(i == 2 && layer == 2){
 			ColUMN_LAST_PIN_PORT &= ~(1 << PINC0);
-			_delay_ms(200);
+			_delay_ms(100);
 			continue;
 		}
-		COLUMN_PORT = patterns[layer][i];
-		_delay_ms(200); // Adjust the delay as needed for brightness
+		COLUMN_PORT = patterns1[layer][i];
+		_delay_ms(100); // Adjust the delay as needed for brightness
 	}
 }
 
-void pattern1(){
+void pattern1(void){
 	for (int layer = 0; layer < 3; layer++) {
 		displayLayer(layer);
 		_delay_ms(1); // Adjust the delay to control animation speed
@@ -44,7 +39,7 @@ void pattern1(){
 
 }
 
-void pattern1_blink(){
+void pattern1_blink(void){
 	for (int j = 0; j < 3; j++) {
 		LAYER_PORT = 0b00000111;
 		
@@ -52,17 +47,14 @@ void pattern1_blink(){
 		for (int i = 0; i < 3; i++) {
 			if(i == 2 && j == 2){
 				ColUMN_LAST_PIN_PORT &= ~(1 << PINC0);
-				_delay_ms(200);
+				_delay_ms(100);
 				ColUMN_LAST_PIN_PORT |= (1 << PINC0);
 				continue;
 			}
 			COLUMN_PORT = patterns1_blink[j][i];
-			_delay_ms(200); // Adjust the delay as needed for brightness
+			_delay_ms(100); // Adjust the delay as needed for brightness
 		}
 		_delay_ms(1); // Adjust the delay to control animation speed
 	}
 	reset_pins();
 }
-
-
-#endif /* PATTERN1_H_ */

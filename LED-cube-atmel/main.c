@@ -9,10 +9,7 @@
 
 #include "./Libs/USART/USART.h"
 
-#include "Patterns/pattern1.h"
-#include "Patterns/pattern2.h"
-#include "Patterns/pattern3.h"
-
+#include "Patterns/patterns.h"
 
 #include <util/delay.h>
 //#include <string.h>
@@ -40,9 +37,10 @@ int main(void) {
 		//USART_transmition_string(str);
 		
 		// Display each layer in sequence to create animation
-		//pattern1_blink();
-		//pattern3_blink();
-		pattern2_blink();
+		pattern1_blink();
+		pattern3_blink();
+		//pattern2_blink();
+		//pattern4_blink();
 		
 	}
 	
