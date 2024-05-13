@@ -120,7 +120,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Includes\atmega32.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Includes\atmega32.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Libs\USART\usart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Libs\USART\USART.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -138,6 +147,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Includes" />
+    <Folder Include="Libs" />
+    <Folder Include="Libs\USART\" />
     <Folder Include="Patterns" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />

@@ -7,6 +7,11 @@
 
 #include <avr/io.h>
 
+//For USART
+#define BAUDRATE 9600
+#define BAUD_PRESCALLER (((F_CPU / (BAUDRATE * 16UL))) - 1)
+
+
 // Define the pins connected to the layers and columns of the LED cube
 
 //layer
@@ -23,27 +28,9 @@
 #define ColUMN_LAST_PIN_DDR DDRC
 #define COLUMN_LAST_PIN_MASK 0x01
 
-
-void reset_pins(){
-	//set layer pins off
-	LAYER_PORT = 0b00000000;
-	
-	//set column pins on
-	COLUMN_PORT = 0b11111111;
-	ColUMN_LAST_PIN_PORT = 0b00000001;
-	
-}
-
-// Function to initialize the LED cube pins
-void initLEDs() {
-	LAYER_DDR = LAYER_MASK; // Set layer pins as output
-	
-	COLUMN_DDR = COLUMN_MASK; // Set column pins as output
-	ColUMN_LAST_PIN_DDR = COLUMN_LAST_PIN_MASK; // set 9th column pin as output
-	
-	reset_pins();
-	
-}
+// Function declarations
+void reset_pins(void);
+void initLEDs(void);
 
 
 #endif /* ATMEGA32_H_ */
