@@ -20,7 +20,10 @@ int main(void) {
 	initLEDs(); // Initialize LED pins
 	
 	//initializing USART
-	//USART_init();
+	USART_init();
+	
+	USART_EnableRXInterrupt(); //enable interrupt
+	sei(); // Enable global interrupts
 	
 	//transmitting String
 	//USART_transmition_string("Hello");
@@ -37,8 +40,19 @@ int main(void) {
 		//USART_transmition_string(str);
 		
 		// Display each layer in sequence to create animation
-		pattern1_blink();
-		pattern3_blink();
+		if(interrupt_data == '1'){
+			pattern1_blink();
+		}
+		else if(interrupt_data == '2'){
+			pattern2_blink();
+		}
+		else if(interrupt_data == '3'){
+			pattern3_blink();
+		}
+		else{
+			pattern4_blink();
+		}
+		
 		//pattern2_blink();
 		//pattern4_blink();
 		
