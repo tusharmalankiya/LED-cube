@@ -17,6 +17,11 @@ void pattern1_blink(void);
 void pattern3(void);
 void pattern3_blink(void);
 
+void pattern5(void);
+void pattern5_blink(void);
+
+void pattern6(void);
+void pattern6_blink(void);
 
 
 #endif /* PATTERNS_H_ */

@@ -29,7 +29,7 @@ unsigned char USART_receive(void){
 	return UDR;
 }
 
-void UART_received_string(char* buffer, int bufferSize){
+void UART_receive_string(char* buffer, int bufferSize){
 	int i=0;
 	
 	while(i < bufferSize - 1){
@@ -42,7 +42,7 @@ void UART_received_string(char* buffer, int bufferSize){
 	buffer[i] = '\0';
 }
 
-void USART_transmition_string(const char* command){
+void USART_transmit_string(const char* command){
 	while(*command != '\0'){
 		USART_transmit(*command);
 		command++;
@@ -53,10 +53,15 @@ void USART_transmition_string(const char* command){
 }
 
 
+
 //Interrupt Service Routine for USART receive interrupt. 
 ISR(USART_RXC_vect) {
 	
 	interrupt_data = UDR; // Fetch the received byte into the buffer
+	//interrupt_data = USART_receive();
+	//char str[40];
+	//UART_receive_string(str, 40);
 	USART_transmit(interrupt_data);
-	
+	//interrupt_data = str[0];
+	//USART_transmit_string(str);
 }

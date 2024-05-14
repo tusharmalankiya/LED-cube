@@ -15,9 +15,9 @@ void USART_transmit(unsigned char data);
 
 unsigned char USART_receive(void);
 
-void UART_received_string(char* buffer, int bufferSize);
+void UART_receive_string(char* buffer, int bufferSize);
 
-void USART_transmition_string(const char* command);
+void USART_transmit_string(const char* command);
 
 
 #endif /* USART_H_ */

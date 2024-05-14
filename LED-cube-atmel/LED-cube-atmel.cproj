@@ -147,6 +147,12 @@
     <Compile Include="Patterns\pattern4.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Patterns\pattern5.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Patterns\pattern6.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Patterns\patterns.h">
       <SubType>compile</SubType>
     </Compile>

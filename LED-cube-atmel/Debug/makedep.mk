@@ -16,3 +16,7 @@ Patterns\pattern3.c
 
 Patterns\pattern4.c
 
+Patterns\pattern5.c
+
+Patterns\pattern6.c
+

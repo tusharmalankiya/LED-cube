@@ -26,7 +26,7 @@ int main(void) {
 	sei(); // Enable global interrupts
 	
 	//transmitting String
-	//USART_transmition_string("Hello");
+	USART_transmit_string("Start");
 	
 	
 	while (1) {
@@ -41,20 +41,30 @@ int main(void) {
 		
 		// Display each layer in sequence to create animation
 		if(interrupt_data == '1'){
+			pattern1();
 			pattern1_blink();
 		}
 		else if(interrupt_data == '2'){
+			pattern2();
 			pattern2_blink();
 		}
 		else if(interrupt_data == '3'){
+			pattern3();
 			pattern3_blink();
 		}
-		else{
+		else if(interrupt_data == '4'){
+			pattern4();
 			pattern4_blink();
 		}
+		else if(interrupt_data == '5'){
+			pattern5();
+			pattern5_blink();
+		}
+		else if(interrupt_data == '6'){
+			pattern6();
+			pattern6_blink();
+		}
 		
-		//pattern2_blink();
-		//pattern4_blink();
 		
 	}
 	
